@@ -1,21 +1,52 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
+import PokemonCard from './Components/PokemonCard';
+import Home from './Screens/Home'
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const stack = createStackNavigator();
+
+const globalScreenOptions = {
+  headerStyle: { backgroundColor: "#212121" },
+  headerTitleStyle: { color: "white" },
+  headerTintColor: "white",
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <stack.Navigator
+        //  initialRouteName="Home"
+        screenOptions={globalScreenOptions}>
+        <stack.Screen name="PokéDex" component={Home} />
+      </stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flexGrow: 1,
+    backgroundColor: '#212121',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  tinyLogo: {
+    width: 100,
+    height: 100,
+  },
+  text: {
+    color: "#fff",
+    marginTop: 10,
+    fontSize: 40,
+    fontWeight: "bold"
+  },
+  // scrollV: {
+  //   marginBottom: 10,
+  //   width: "100%",
+  //   // alignItems: 'center'
+  // }
 });
